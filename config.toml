@@ -4,6 +4,9 @@ format = """< $os$shell>-< $all>-| $directory|$line_break$username$hostname$char
 
 right_format = """$status\\[$cmd_duration\\]\\[$battery\\]"""
 
+[localip]
+disabled = false
+
 [status]
 disabled = false
 
