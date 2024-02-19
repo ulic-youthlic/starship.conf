@@ -101,6 +101,7 @@ symbol = " "
 symbol = " "
 
 [hostname]
+format = '[$ssh_symbol$hostname]($style) '
 disabled = false
 ssh_symbol = " "
 
