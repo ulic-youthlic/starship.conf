@@ -1,19 +1,24 @@
-add_newline = false
+# add_newline = false
 
-format = """< $os$shell>-< $all>-| $directory|$line_break$username$hostname$character"""
-
-right_format = """$status\\[$cmd_duration\\]\\[$battery\\]"""
+format = """┌─<< $os$shell$hostname>> \\[ $battery\\]\\[ $memory_usage\\]$line_break\
+├─$git_branch$git_commit$git_state$git_metrics$git_status| $all| $cmd_duration$line_break\
+└┤ ${username}at $directory$conda$status$character"""
 
 [localip]
 disabled = false
 
 [status]
+format = "[$symbol$status]($style) "
 disabled = false
 
 [time]
 disabled = false
 
 [shell]
+powershell_indicator = "powershell"
+pwsh_indicator = "pwsh"
+fish_indicator = "fish"
+bash_indicator = "bash"
 disabled = false
 
 [sudo]
@@ -23,6 +28,7 @@ disabled = false
 disabled = false
 
 [cmd_duration]
+format = '\[ took [$duration]($style) \]'
 min_time = 0
 
 [[battery.display]]
@@ -40,6 +46,7 @@ style = 'green'
 
 [username]
 show_always = true
+format = "[$user]($style) "
 disabled = false
 
 [aws]
@@ -63,6 +70,10 @@ symbol = " "
 
 [directory]
 truncation_symbol = '…/'
+format = '[$path]($style)[$read_only]($read_only_style) '
+fish_style_pwd_dir_length = 2
+truncate_to_repo = false
+repo_root_style = "bold green"
 use_os_path_sep = false
 disabled = false
 read_only = " 󰌾"
@@ -83,7 +94,25 @@ symbol = " "
 symbol = " "
 
 [git_branch]
+format = '<< on [$symbol$branch(:$remote_branch)]($style) '
 symbol = " "
+
+[git_status]
+diverged = '|⇕⇡${ahead_count}⇣${behind_count}'
+conflicted = "[⚔️${count}](red)"
+ahead = '|[⇡${count}](bold green)'
+behind = '|[⇣${count}](bold yellow)'
+untracked = '[!${count}](red)'
+stashed = "[📦${count}](purple)"
+modified = '[M${count}](bold yellow)'
+staged = "[+${count}](green)"
+renamed = "[»${count}](bold yellow)"
+deleted = '[-${count}](blue)'
+up_to_date = '|[✓](green)'
+format = '([\[$all_status$ahead_behind\]]($style) )>> '
+
+[git_commit]
+only_detached = false
 
 [golang]
 symbol = " "
@@ -101,7 +130,8 @@ symbol = " "
 symbol = " "
 
 [hostname]
-format = '[$ssh_symbol$hostname]($style) '
+ssh_only = false
+format = 'of [$ssh_symbol$hostname]($style) '
 disabled = false
 ssh_symbol = " "
 
@@ -118,6 +148,8 @@ symbol = " "
 symbol = " "
 
 [memory_usage]
+format = "$symbol [${ram}( | ${swap})]($style) "
+threshold = -1
 disabled = false
 symbol = "󰍛 "
 
@@ -179,33 +211,23 @@ Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
-
 [perl]
 symbol = " "
-
 [php]
 symbol = " "
-
 [pijul_channel]
 symbol = " "
-
 [python]
 symbol = " "
-
 [rlang]
 symbol = "󰟔 "
-
 [ruby]
 symbol = " "
-
 [rust]
 symbol = " "
-
 [scala]
 symbol = " "
-
 [swift]
 symbol = " "
-
 [zig]
 symbol = " "
