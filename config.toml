@@ -1,8 +1,9 @@
-format = """┌─<< $os$shell$hostname>> \\[ $battery\\]\\[ $memory_usage\\]$line_break\
+format = """┌─<< $os$shell$hostname$localip>> \\[ $battery\\]\\[ $memory_usage\\]$line_break\
 ├─$git_branch$git_commit$git_state$git_metrics$git_status| $all| $cmd_duration$line_break\
 └┤ ${username}at $directory$conda$status$character"""
 
 [localip]
+format = 'at [$localipv4]($style) '
 disabled = false
 
 [status]
