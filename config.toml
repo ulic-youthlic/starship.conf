@@ -40,6 +40,7 @@ up_to_date = '[✓](green)'
 format = '([(\[$all_status\])(\[$ahead_behind\])]($style) ) '
 
 [git_commit]
+format = '([\($hash$tag\)]($style) )'
 only_detached = false
 
 [directory]
